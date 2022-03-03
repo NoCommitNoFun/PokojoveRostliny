@@ -1,8 +1,13 @@
 package com.company;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class PlantsManager {
     private List<Plants> plantsList = new ArrayList<>();
@@ -46,8 +51,31 @@ public class PlantsManager {
             System.out.println(plantsList.get(i));
         }
     }
-    public void readFromFile(){
-        //TODO
+    public void readFromFile(String filename, String delimiter){
+
+        try {
+            Scanner scanner = new Scanner(new BufferedReader(new FileReader(filename)));
+
+            while (scanner.hasNextLine()) {
+                String inputLine = scanner.nextLine();
+                String[] parts = inputLine.split(delimiter);
+                // System.out.println(Arrays.toString(parts));
+
+                // puts values from file into variables
+                String name = String.valueOf(parts[0]); //String notes = parts[1];
+                String notes = String.valueOf(parts[1]);
+                int frequencyOfWatering = Integer.valueOf(parts[2]);
+                LocalDate watering = LocalDate.parse(parts[3]);
+                LocalDate planted = LocalDate.parse(parts[4]);
+                // add to list
+                addPlant(new Plants(name, notes,planted,watering,frequencyOfWatering));
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("The file was not loaded!");
+        }
+
     }
 
     public void saveToFile(){
