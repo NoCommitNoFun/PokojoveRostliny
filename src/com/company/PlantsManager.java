@@ -1,8 +1,6 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -78,7 +76,21 @@ public class PlantsManager {
 
     }
 
-    public void saveToFile(){
-        //TODO
+    public void saveToFile(String outputFilename, String delimiter){
+        try(PrintWriter writer =
+                    new PrintWriter(new FileWriter(outputFilename))
+        ) {
+            for (Plants plants : plantsList) {
+                String outputLine = plants.getName()+delimiter;
+                outputLine += plants.getNotes()+delimiter;
+                outputLine += plants.getFrequencyOfWatering()+delimiter;
+                outputLine += plants.getWatering().toString()+delimiter;
+                outputLine += plants.getPlanted().toString();
+                writer.println(outputLine);
+            }
+            System.out.println("Save successfully");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

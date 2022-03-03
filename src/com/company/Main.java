@@ -7,6 +7,7 @@ import java.util.Arrays;
 public class Main {
 
     public static final String INPUT_FILENAME = "C:\\Users\\admin\\IdeaProjects\\PokojoveRostliny\\pokojoveRostliny.txt";
+    public static final String OUTPUT_FILENAME = "C:\\Users\\admin\\IdeaProjects\\PokojoveRostliny\\vystup.txt";
     public static final String DELIMITER = "\t";
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -24,14 +25,19 @@ public class Main {
         allPlants.addPlant(kvetinka3);
 
         allPlants.writeAllPlants();
-/*
+
         allPlants.plantOnPosition(0);
         allPlants.plantOnPosition(1);
         allPlants.plantOnPosition(2);
         //allPlants.writeAllPlants();
-        allPlants.removedPlant(2);
+
         allPlants.removedPlant(1);
 
-        allPlants.writeAllPlants();*/
+        allPlants.saveToFile(OUTPUT_FILENAME,DELIMITER);
+        // 16. Vyzkoušejte opětovné načtení vygenerovaného souboru.
+        allPlants.readFromFile(OUTPUT_FILENAME,DELIMITER);
+        allPlants.writeAllPlants();
+
+
     }
 }
