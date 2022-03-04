@@ -42,6 +42,7 @@ public class Plants {
     public void setFrequencyOfWatering(int frequencyOfWatering) {
         this.frequencyOfWatering = frequencyOfWatering;
     }
+
     //jeden pro nastavení všech atributů
     public Plants(String name, String notes, LocalDate planted, LocalDate watering, int frequencyOfWatering) {
         this.name = name;
@@ -50,6 +51,7 @@ public class Plants {
         this.watering = watering;
         this.frequencyOfWatering = frequencyOfWatering;
     }
+
     //druhý nastaví jako poznámku prázdný řetězec a datum poslední zálivky nastaví na dnešní datum.
     public Plants(String name, LocalDate planted, int frequencyOfWatering) {
         this.name = name;
@@ -58,6 +60,7 @@ public class Plants {
         this.watering = LocalDate.now();
         this.frequencyOfWatering = frequencyOfWatering;
     }
+
     //třetí nastaví totéž co druhý a navíc výchozí frekvenci zálivky na 7 dnů a datum zasazení na dnešní datum. (Uživatel tedy bude zadávat pouze název rostliny.)
     public Plants(String name) {
         this.name = name;
@@ -79,8 +82,8 @@ public class Plants {
                 '}';
     }
 
-    public String getWateringInfo(){
-        return "Plant name: " + name + ", date of last watering: " + watering + ", date of next watering" + watering.plusDays(frequencyOfWatering);
+    public String getWateringInfo() {
+        return "Plant name: " + name + ", date of last watering: " + watering + ", date of next watering: " + watering.plusDays(frequencyOfWatering);
     }
 
     private String name;
